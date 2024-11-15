@@ -1,6 +1,8 @@
 import path from 'node:path';
 import fs from 'fs-extra';
-import allure from 'allure-commandline'
+import allure from 'allure-commandline';
+import AllureReporter from '@wdio/allure-reporter';
+
 
 export const downloadDir = path.resolve('./tmp');
 
