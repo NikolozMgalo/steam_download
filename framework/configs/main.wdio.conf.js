@@ -32,26 +32,19 @@ export const mainConfig = {
             await browser.takeScreenshot();
         }
     },
- /*   
-    onComplete: function() {
-        const reportError = new Error('Could not generate Allure report')
-        const generation = allure(['generate', 'allure-results', '--clean'])
-        return new Promise((resolve, reject) => {
-            const generationTimeout = setTimeout(
-                () => reject(reportError),
-                5000)
 
-            generation.on('exit', function(exitCode) {
-                clearTimeout(generationTimeout)
-
-                if (exitCode !== 0) {
-                    return reject(reportError)
-                }
-
-                console.log('Allure report successfully generated')
-                resolve()
-            })
-        })
-    }
-*/
-}
+    beforeScenario: (scenario) => {
+        const tags = scenario.pickle.tags.map(tag => tag.name);
+        if (tags.includes('@blocker')) {
+            AllureReporter.addLabel('severity', 'blocker');
+        } else if (tags.includes('@critical')) {
+            AllureReporter.addLabel('severity', 'critical');
+        } else if (tags.includes('@normal')) {
+            AllureReporter.addLabel('severity', 'normal');
+        } else if (tags.includes('@minor')) {
+            AllureReporter.addLabel('severity', 'minor');
+        } else if (tags.includes('@trivial')) {
+            AllureReporter.addLabel('severity', 'trivial');
+        }
+    },
+};

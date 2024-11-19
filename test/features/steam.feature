@@ -1,5 +1,6 @@
 Feature: Steam test
 
+    @critical
     Scenario: Download Steam
         Given I am on steam main page
         Then Steam home page is open

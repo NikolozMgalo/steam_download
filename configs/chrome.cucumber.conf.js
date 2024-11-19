@@ -8,7 +8,7 @@ export const config = {
             {
                 outputDir: 'allure-results',
                 disableWebdriverStepsReporting: true,
-                disableWebdriverScreenshotsReporting: true,
+                disableWebdriverScreenshotsReporting: false,
                 useCucumberStepReporter: true,
                 disableMochaHooks: true,
                 reportedEnvironmentVars: {
